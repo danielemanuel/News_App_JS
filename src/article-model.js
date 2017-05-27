@@ -1,17 +1,19 @@
+
 (function(exports) {
 
-    function Article(headline, body) {
-      this.headline = headline;
-      this.body = body;
-    }
+	function Article(headline, body){
+		this._headline = headline;
+		this._body = body;
+	}
 
-    Article.prototype.returnHeadline =function() {
-        return this.headline;
-    };
+	Article.prototype.returnHeadline = function() {
+		return this._headline;
+	};
 
-    Article.prototype.returnBody = function() {
-        return this.body;
-    };
+	Article.prototype.returnBody = function() {
+		return this._body;
+	};
 
-    exports.Article = Article;
+	exports.Article = Article;
+
 })(this);

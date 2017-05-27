@@ -1,23 +1,18 @@
 (function(exports) {
 
-	function ArticleView(articleList) {
-		this.articleList = articleList;
-	}
-
-	ArticleView.prototype.getArticleList = function() {
-		return this.articleList;
+	function ArticleListView(articleList) {
+		this._articleList = articleList;
 	};
 
-	ArticleView.prototype.displayArticles = function() {
-		// var article = new Article("Headline","Body")
-		var display = "<ol>";
-		this.articleList.showArticles().forEach(function(aarticle) {
-				display += "<li><div>" + article.returnHeadline() + "</div></li>"
+	ArticleListView.prototype.displayArticles = function() {
+		articles = '<ul>';
+		this._articleList.showArticles().forEach(function(element) {
+			articles += `<li><div>${element.returnHeadline()}</div></li>`
 		});
-		return(display + '</ol>')
+		articles += '</ul>';
+		return articles;
 	};
 
+	exports.ArticleListView = ArticleListView;
 
-
-		exports.ArticleView = ArticleView;
 })(this);

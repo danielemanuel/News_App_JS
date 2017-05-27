@@ -1,20 +1,22 @@
 (function(exports) {
 
 	function ArticleList() {
-		this.articles = [];
-	}
+		this._articles = [];
+	};
 
 	ArticleList.prototype.addArticle = function(article) {
-		this.articles.push(article);
+		this._articles.push(article)
 	};
 
 	ArticleList.prototype.showArticles = function() {
-		return this.articles;
+		return this._articles;
 	};
 
-	Article.prototype.createArticle = function(headline, body) {
+	ArticleList.prototype.createArticle = function(headline, body) {
 		var article = new Article(headline, body);
 		this.addArticle(article);
 	};
-		exports.ArticleList = ArticleList;
+
+	exports.ArticleList = ArticleList;
+
 })(this);

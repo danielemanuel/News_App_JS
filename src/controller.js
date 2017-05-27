@@ -1,20 +1,44 @@
 (function(exports) {
 
-	function Controller(articleList) {
-		this.articleList = articleList;
-	}
-
-	Controller.prototype.addArticle = function(headline, body) {
-		this.articleList.createArticle(headline, body);
+	function ArticleController(articleList) {
+		self = this;
+		this._articleList = articleList;
 	};
 
-	Controller.prototype.addArticleView = function() {
-		this.articleView = new ArticleView(this.articleList);
+	ArticleController.prototype.addArticle = function(headline, body) {
+		self._articleList.createArticle(headline, body);
 	};
 
-	Controller.prototype.displayHTML = function() {
-		document.getElementById('app').innerHTML = "Guten morgan!";
+	ArticleController.prototype.addArticleListView = function() {
+		self._articleListView = new ArticleListView(self._articleList);
 	};
 
-		exports.Controller = Controller;
+	ArticleController.prototype.updateHTML = function() {
+		var getArticleList = self._articleListView.displayArticles();
+		var articleDisplay = document.getElementById("app");
+		articleDisplay.innerHTML = getArticleList;
+	};
+
+	ArticleController.prototype.requestXMLDoc = function() {
+		self.xhr = new XMLHttpRequest();
+		self.xhr.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?from-date=2017-01-01&to-date=2017-01-07", true)
+		self.xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				this.resultsArray = JSON.parse(this.responseText).response.results;
+				self.processResultsArray(this.resultsArray);
+			};
+		};
+		self.xhr.send();
+	};
+
+	ArticleController.prototype.processResultsArray = function(array) {
+		array.forEach(function(element) {
+			self.addArticle(element.webTitle);
+		});
+		self.addArticleListView();
+		self.updateHTML();
+	};
+
+	exports.ArticleController = ArticleController;
+
 })(this);

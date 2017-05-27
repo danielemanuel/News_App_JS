@@ -1,2 +1,3 @@
-var controller = new Controller();
-controller.displayHTML();
+list = new ArticleList;
+controller = new ArticleController(list);
+controller.requestXMLDoc();
