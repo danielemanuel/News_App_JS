@@ -13,6 +13,5 @@
         return this.body;
     };
 
-
     exports.Article = Article;
 })(this);
