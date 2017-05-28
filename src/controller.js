@@ -3,7 +3,7 @@
 	function ArticleController(articleList) {
 		self = this;
 		this._articleList = articleList;
-	};
+	}
 
 	ArticleController.prototype.addArticle = function(headline, body) {
 		self._articleList.createArticle(headline, body);
@@ -21,19 +21,19 @@
 
 	ArticleController.prototype.requestXMLDoc = function() {
 		self.xhr = new XMLHttpRequest();
-		self.xhr.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?from-date=2017-01-01&to-date=2017-01-07", true)
+		self.xhr.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?show-fields=all&from-date=2017-01-01&to-date=2017-01-07", true);
 		self.xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				this.resultsArray = JSON.parse(this.responseText).response.results;
 				self.processResultsArray(this.resultsArray);
-			};
+			}
 		};
 		self.xhr.send();
 	};
 
 	ArticleController.prototype.processResultsArray = function(array) {
 		array.forEach(function(element) {
-			self.addArticle(element.webTitle);
+			self.addArticle(element.webTitle,element.fields.body);
 		});
 		self.addArticleListView();
 		self.updateHTML();

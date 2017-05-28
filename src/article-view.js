@@ -5,11 +5,11 @@
 	};
 
 	ArticleListView.prototype.displayArticles = function() {
-		articles = '<ul>';
+		articles = '<ol>';
 		this._articleList.showArticles().forEach(function(element) {
 			articles += `<li><div>${element.returnHeadline()}</div></li>`
 		});
-		articles += '</ul>';
+		articles += '</ol>';
 		return articles;
 	};
 
