@@ -10,7 +10,7 @@
 	Article.prototype.returnHeadline = function() {
 		return this._headline;
 	};
-
+	
 	Article.prototype.returnBody = function() {
 		return this._body;
 	};

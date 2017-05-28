@@ -1,6 +1,0 @@
-article = new Article('Car', 'House');
-list = new ArticleList();
-list.addArticle('Movies');
-list.addArticle('Music');
-view = new ArticleView(list);
-view.displayArticles();

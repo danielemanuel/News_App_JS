@@ -2,10 +2,10 @@
 
 	function ArticleList() {
 		this._articles = [];
-	};
+	}
 
 	ArticleList.prototype.addArticle = function(article) {
-		this._articles.push(article)
+		this._articles.push(article);
 	};
 
 	ArticleList.prototype.showArticles = function() {

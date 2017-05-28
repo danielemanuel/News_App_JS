@@ -2,7 +2,7 @@
 
 	function ArticleListView(articleList) {
 		this._articleList = articleList;
-	};
+	}
 
 	ArticleListView.prototype.displayArticles = function() {
 		articles = '<ol>';
